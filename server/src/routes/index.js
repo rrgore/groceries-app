@@ -2,7 +2,6 @@ var express = require('express');
 var Model = require('../models/model');
 var { testEnvironmentVariable, _ } = require('../settings');
 var indexRouter = express.Router();
-var cors = require('cors');
 
 var groceriesModel = new Model('groceries_table');
 async function getAllGroceries( req, res ) {
@@ -14,7 +13,7 @@ async function getAllGroceries( req, res ) {
     }
 }
 
-indexRouter.get('/allGroceries', cors(), getAllGroceries);
+indexRouter.get('/groceries', getAllGroceries);
 
 indexRouter.get('/', function(req, res) {
     return res.status(200).json({ message: testEnvironmentVariable });
