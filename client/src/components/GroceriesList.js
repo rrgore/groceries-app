@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+import GroceryItem from './GroceryItem';
 
 const GET_URL = 'http://localhost:3000/v1/allGroceries'
 
@@ -21,15 +24,23 @@ const GroceriesList = () => {
 
     return (
         <div>
-            <ul>
-            {
-                groceries && groceries.map(item => (
-                    <li key={item.id}>
-                        Name: {item.name} Quantity: {item.quantity}
-                    </li>
-                ))
-            }
-            </ul>
+            <Table bordered size="sm">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        groceries && groceries.map(item => (
+                            <GroceryItem key={item.id} item={item} />
+                        ))
+                    }
+                </tbody>            
+            </Table>
+            <Button variant="primary" block>Add new item</Button>
         </div>
     )
 }
