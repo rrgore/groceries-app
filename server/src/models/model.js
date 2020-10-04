@@ -8,8 +8,18 @@ class Model {
     }
 
     async selectAll() {
-        let query = `SELECT * FROM ${this.table}`;
+        let query = `SELECT * FROM ${this.table} ORDER BY id ASC`;
         return this.pool.query(query);
+    }
+
+    async updateItem( newProps ) {
+        var query = `UPDATE ${this.table} SET quantity=$1 WHERE id=$2`;
+        var values = [];
+        if( newProps && newProps.id && newProps.quantity ) {
+            values.push( newProps.quantity );
+            values.push( newProps.id );            
+        }
+        return this.pool.query(query, values);
     }
 }
 

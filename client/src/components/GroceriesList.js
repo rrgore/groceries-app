@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import GroceryItem from './GroceryItem';
 
-const GET_URL = 'http://localhost:3000/v1/allGroceries'
+const GET_URL = 'http://localhost:3000/api/groceries'
 
 const GroceriesList = () => {
     const [groceries, setGroceries] = useState([]);
@@ -11,15 +11,16 @@ const GroceriesList = () => {
     useEffect(() => {
         fetch(GET_URL, {
             method: 'GET'
-        }).then( res => res.json() )
-            .then(
-                (result) => {
-                    setGroceries(result.groceries);
-                },
-                (error) => {
-                    console.error( error );
-                }
-            )
+        }).then( 
+            res => res.json() 
+        ).then(
+            (result) => {
+                setGroceries(result.groceries);
+            },
+            (error) => {
+                console.error( error );
+            }
+        )
     }, []);
 
     return (
