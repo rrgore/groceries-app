@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import GroceryItem from './GroceryItem';
+import NewItemForm from './NewItemForm';
 
 const GET_URL = 'http://localhost:3000/api/groceries'
 
 const GroceriesList = () => {
     const [groceries, setGroceries] = useState([]);
+    const [display, setDisplay] = useState(false);
 
     useEffect(() => {
         fetch(GET_URL, {
@@ -22,6 +24,8 @@ const GroceriesList = () => {
             }
         )
     }, []);
+
+    const handleAddItem = () => setDisplay( true );
 
     return (
         <div>
@@ -41,7 +45,8 @@ const GroceriesList = () => {
                     }
                 </tbody>            
             </Table>
-            <Button variant="primary" block>Add new item</Button>
+            <Button variant="primary" block onClick={handleAddItem}>Add new item</Button>
+            <NewItemForm display={display} setDisplay={setDisplay}/>
         </div>
     )
 }
