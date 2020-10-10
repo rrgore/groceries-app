@@ -20,9 +20,7 @@ const GroceryItem = (props) => {
         setEditable( true );
     }
 
-    async function handleSaveClick( event ) {
-        event.preventDefault();
-
+    async function handleSaveClick() {
         setEditable( false );
         await patchQuantityData(props.item.id, quantity);  
     }
@@ -50,7 +48,7 @@ const GroceryItem = (props) => {
         <tr>
             <td>{props.item.name}</td>
             <td>
-                <FormControl type="number" readOnly={!editable} value={quantity} onChange={handleInputChange}></FormControl>
+                <FormControl size="sm" type="number" readOnly={!editable} value={quantity} onChange={handleInputChange}></FormControl>
             </td>
             <td>
                 <Button variant="primary" size="sm" disabled={editable} onClick={handleEditClick}>Edit</Button>

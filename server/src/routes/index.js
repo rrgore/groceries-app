@@ -28,9 +28,24 @@ async function patchItem( req, res ) {
     }
 }
 
+async function postNewItem( req, res ) {
+    try {
+        var newProps = {
+            name: req.body.name,
+            quantity: req.body.quantity
+        };
+        var data = await groceriesModel.insertNewItem( newProps );
+        return res.status(200).json({ msg: data });
+    } catch( err ) {
+        res.status(200).json({ errors: err.stack });
+    }
+}
+
 indexRouter.patch('/groceries/:id', cors(), patchItem );
 
 indexRouter.get('/groceries', cors(), getAllGroceries);
+
+indexRouter.post('/groceries', cors(), postNewItem);
 
 indexRouter.get('/', function(req, res) {
     return res.status(200).json({ message: testEnvironmentVariable });

@@ -21,6 +21,16 @@ class Model {
         }
         return this.pool.query(query, values);
     }
+
+    async insertNewItem( newProps ) {
+        var query = `INSERT INTO ${this.table} (name, quantity) VALUES ($1, $2)`;
+        var values = [];
+        if( newProps && newProps.name && newProps.quantity ) {
+            values.push( newProps.name );
+            values.push( newProps.quantity );            
+        }
+        return this.pool.query(query, values);
+    }
 }
 
 module.exports = Model;
