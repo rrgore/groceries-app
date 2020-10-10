@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 
-const GET_URL = 'http://localhost:3000/api/groceries'
+const GET_URL = 'http://192.168.0.106:3000/api/groceries'
 
 const GroceriesList = () => {
     const [groceries, setGroceries] = useState([]);
