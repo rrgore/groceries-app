@@ -8,6 +8,8 @@ var app = require('../app');
 var debug = require('debug')('server:server');
 var http = require('http');
 var https = require('https');
+var path = require('path');
+var fs = require('fs');
 
 /**
  * Get port from environment and store in Express.
@@ -33,7 +35,11 @@ server.on('listening', onListening);
 /**
  * Listen for https calls on port 3001
  */
-https.createServer(app).listen(3001);
+var httpsOptions = {
+    cert: fs.readFileSync( path.join(__dirname, '..', 'ssl', 'server.cert') ),
+    key: fs.readFileSync( path.join(__dirname, '..', 'ssl', 'server.key') ),
+};
+https.createServer(httpsOptions, app).listen(3001);
 
 /**
  * Normalize a port into a number, string, or false.

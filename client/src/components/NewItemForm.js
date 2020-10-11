@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
 import FormLabel from 'react-bootstrap/FormLabel';
 
-const POST_URL = 'http://192.168.0.106:3001/api/groceries'
+const POST_URL = 'https://192.168.0.106:3001/api/groceries'
 
 const NewItemForm = (props) => {
     const [show, setShow] = useState(false);
