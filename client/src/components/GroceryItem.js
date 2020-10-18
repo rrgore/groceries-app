@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
-
-const PATCH_URL = 'https://192.168.0.106:3001/api/groceries';
+import { PATCH_URL } from '../utils/urlService';
 
 const GroceryItem = (props) => {
     const [editable, setEditable] = useState( false );
